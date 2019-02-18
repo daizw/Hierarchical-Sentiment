@@ -156,7 +156,7 @@ class FMTL():
         field_gen = self.field_gen(self._f2i(field),key_iter=key_iter)
 
         if iter_func is not None:
-            field_gen = itertools.chain.from_iterable((x for x in iter_func(field_gen)))
+            field_gen = iter_func(field_gen)
             
         d =  Counter(field_gen)
 
