@@ -109,8 +109,8 @@ class FMTL():
         Sets a mapping for a tuple field. Mappings are functions of a field value or dict
         """
         field = self._f2i(field)
-        #print(mapping)
-        #print(field)
+        #print('mapping=', mapping)
+        #print('field=', field)
         self.mappings[field] = mapping
 
         if unk is not None:
@@ -155,12 +155,12 @@ class FMTL():
         """
         field_gen = self.field_gen(self._f2i(field),key_iter=key_iter)
 
-        #for f in field_gen:
-        #    print f
-
         if iter_func is not None:
             #field_gen = iter_func(field_gen)
             field_gen = itertools.chain.from_iterable((x for x in iter_func(field_gen)))
+            #for f in field_gen:
+            #    print type(f)
+            #    break
             
         d =  Counter(field_gen)
 

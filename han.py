@@ -138,6 +138,8 @@ def load(args):
     print("Train set class stats:\n" + 10*"-")
     _,_ = data_tl.get_stats("rating",trainit,True)
 
+    #print(wdict)
+
     if args.load:
         #print(state.keys())
         net = HAN(ntoken=len(state["word_dic"]),emb_size=state["embed.weight"].size(1),hid_size=state["sent.rnn.weight_hh_l0"].size(1),num_class=state["lin_out.weight"].size(0))
@@ -203,7 +205,7 @@ if __name__ == '__main__':
     parser.add_argument("--hid-size",type=int,default=100)
 
     parser.add_argument("--max-feat", type=int,default=10000)
-    parser.add_argument("--epochs", type=int,default=10)
+    parser.add_argument("--epochs", type=int,default=1)
     parser.add_argument("--clip-grad", type=float,default=1)
     parser.add_argument("--lr", type=float, default=0.01)
     parser.add_argument("--momentum",type=float,default=0.9)

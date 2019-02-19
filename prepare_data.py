@@ -20,13 +20,17 @@ def count_lines(file):
 
 
 def data_generator(data):
+    #count = 0
     with gzip.open(args.input,"r") as f:
         for x in tqdm(f,desc="Reviews",total=count_lines(f)):
+            #count += 1
+            #if count > 1000: break
             yield json.loads(x)
 
 
 def to_array_comp(doc):
-    return [[w.orth_ for w in s] for s in doc.sents]
+    #return [[w.orth_ for w in s] for s in doc.sents]
+    return [[w.lemma_ for w in s ] for s in doc.sents]
 
 
 def custom_pipeline(nlp):
