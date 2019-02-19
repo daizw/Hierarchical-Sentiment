@@ -48,7 +48,7 @@ class AttentionalBiRNN(nn.Module):
         rnn_sents,_ = self.rnn(packed_batch)
         enc_sents,len_s = torch.nn.utils.rnn.pad_packed_sequence(rnn_sents)
 
-        emb_h = F.tanh(self.lin(enc_sents))
+        emb_h = torch.tanh(self.lin(enc_sents))
 
         attended = self.emb_att(emb_h,len_s) * enc_sents
         return attended.sum(0,True).squeeze(0)
@@ -71,7 +71,7 @@ class UIAttentionalBiRNN(AttentionalBiRNN):
         enc_sents,len_s = torch.nn.utils.rnn.pad_packed_sequence(rnn_sents)
 
         uit = torch.cat([user_embs.expand_as(enc_sents),item_embs.expand_as(enc_sents),enc_sents],dim=-1)
-        summed = F.tanh(self.att_h(uit))
+        summed = torch.tanh(self.att_h(uit))
 
         return torch.sum(enc_sents * self.emb_att(summed,len_s),0)
 

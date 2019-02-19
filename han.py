@@ -32,9 +32,12 @@ def tuple_batch(l):
     - Split reviews by sentences which are reordered by length
     - Build sentence ordering index to extract each sentences in training loop
     """
+    #print 'l:', l
     _,_,review,rating = zip(*l)
     r_t = torch.Tensor(rating).long()
     list_rev = review
+
+    #print 'review:', review
 
     sorted_r = sorted([(len(r),r_n,r) for r_n,r in enumerate(list_rev)],reverse=True) #index by desc rev_le
     lr,r_n,ordered_list_rev = zip(*sorted_r)
@@ -174,7 +177,7 @@ def main(args):
     print("-"*20)
 
     optimizer = optim.Adam(net.parameters())
-    torch.nn.utils.clip_grad_norm(net.parameters(), args.clip_grad)
+    torch.nn.utils.clip_grad_norm_(net.parameters(), args.clip_grad)
 
     for epoch in range(1, args.epochs + 1):
         print("\n-------EPOCH {}-------".format(epoch))

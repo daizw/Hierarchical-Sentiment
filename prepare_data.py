@@ -26,7 +26,7 @@ def data_generator(data):
 
 
 def to_array_comp(doc):
-        return [[w.orth_ for w in s] for s in doc.sents]
+    return [[w.orth_ for w in s] for s in doc.sents]
 
 
 def custom_pipeline(nlp):

@@ -201,7 +201,7 @@ def main(args):
     print("-"*20)
 
     optimizer = optim.Adam(net.parameters())
-    torch.nn.utils.clip_grad_norm(net.parameters(), args.clip_grad)
+    torch.nn.utils.clip_grad_norm_(net.parameters(), args.clip_grad)
 
     for epoch in range(1, args.epochs + 1):
         print("\n-------EPOCH {}-------".format(epoch))
